@@ -35,7 +35,7 @@ func NewCurrencyClient(cc grpc.ClientConnInterface) CurrencyClient {
 
 func (c *currencyClient) GetRate(ctx context.Context, in *RateRequest, opts ...grpc.CallOption) (*RateResponse, error) {
 	out := new(RateResponse)
-	err := c.cc.Invoke(ctx, "/Currency/GetRate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/currency.Currency/GetRate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _Currency_GetRate_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Currency/GetRate",
+		FullMethod: "/currency.Currency/GetRate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CurrencyServer).GetRate(ctx, req.(*RateRequest))
@@ -92,7 +92,7 @@ func _Currency_GetRate_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Currency_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Currency",
+	ServiceName: "currency.Currency",
 	HandlerType: (*CurrencyServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
